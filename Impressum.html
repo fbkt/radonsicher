@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Impressum – RadonSicher</title>
+
+  <!--
+    WICHTIG:
+    Wenn du in deiner Hauptseite CSS im <style> hast, kopiere diesen Style-Block 1:1 hier rein,
+    damit die Impressum-Seite exakt gleich aussieht.
+    Falls du schon eine externe CSS-Datei nutzt, ersetze den folgenden <style>-Block durch <link rel="stylesheet" href="...">.
+  -->
+  <style>
+    :root{
+      --text:#0f172a;
+      --muted:#64748b;
+      --border: rgba(15,23,42,.12);
+      --shadow: 0 18px 50px rgba(2,6,23,.08);
+      --radius: 18px;
+      --bg: #fbfbfc;
+      --card: #fff;
+      --accent: #ff7a3d;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background: var(--bg);
+    }
+
+    a{ color: inherit; }
+
+    .container{
+      width:min(1100px, calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    /* Header */
+    header{
+      position: sticky;
+      top:0;
+      z-index: 50;
+      background: rgba(255,255,255,.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+    }
+
+    .brand img{
+      width:26px;
+      height:26px;
+      display:block;
+    }
+
+    .brand strong{
+      font-size:18px;
+      letter-spacing:.2px;
+    }
+
+    .brand span{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      margin-top:1px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:999px;
+      padding:10px 14px;
+      text-decoration:none;
+      background:#fff;
+    }
+
+    /* Content */
+    main{ padding:42px 0 56px; }
+
+    h1{
+      font-size:42px;
+      line-height:1.08;
+      margin:0 0 10px;
+      letter-spacing:-.02em;
+    }
+
+    .lead{
+      color:var(--muted);
+      font-weight:700;
+      font-size:18px;
+      margin:0 0 22px;
+      max-width: 70ch;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:22px;
+    }
+
+    .small{ font-size:13px; color: var(--muted); }
+
+    .kv{
+      display:grid;
+      grid-template-columns: 180px 1fr;
+      gap:10px 18px;
+      margin-top: 14px;
+    }
+    .kv div{
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(15,23,42,.06);
+    }
+    .kv div:nth-last-child(-n+2){
+      border-bottom: none;
+    }
+    .k{ color: var(--muted); font-weight:700; }
+    .v{ font-weight:750; }
+
+    /* Footer */
+    footer{
+      padding:16px 0 18px;
+      border-top:1px solid var(--border);
+      background: rgba(255,255,255,.70);
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr 1fr auto;
+      gap:16px;
+      align-items:start;
+    }
+
+    .footer-brand{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+    }
+    .footer-logo{
+      width:26px;
+      height:26px;
+      flex:0 0 auto;
+      margin-top:2px;
+    }
+    .footer-links{
+      text-align:right;
+      white-space:nowrap;
+    }
+    .footer-note{ margin-top:10px; }
+
+    @media (max-width: 700px){
+      h1{ font-size:34px; }
+      .footer-grid{ grid-template-columns: 1fr; }
+      .footer-links{ text-align:left; white-space:normal; }
+      .kv{ grid-template-columns: 1fr; }
+      .k{ margin-top: 8px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <!-- ggf. Logo-Pfad anpassen -->
+        <a class="brand" href="index.html">
+          <img src="assets/img/logo.svg" alt="RadonSicher Logo" />
+          <div>
+            <strong>RadonSicher</strong>
+            <span>Der Radon-Check für Ihr Zuhause.</span>
+          </div>
+        </a>
+
+        <a class="btn" href="index.html#kontakt">Radon-Check anfragen</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>Impressum</h1>
+      <p class="lead">
+        Angaben gemäß § 5 TMG (sofern anwendbar) und Informationen zum Anbieter dieser Dienstleistung.
+      </p>
+
+      <div class="card">
+        <h2 style="margin:0 0 10px">Anbieter</h2>
+
+        <div class="kv">
+          <div class="k">Dienstleistung</div>
+          <div class="v">FKP - Fabian Kettler Projekte</div>
+
+          <div class="k">Inhaber</div>
+          <div class="v">Fabian Kettler</div>
+
+          <div class="k">Adresse</div>
+          <div class="v">Delsterner Str. 102, 58091 Hagen</div>
+        </div>
+
+        <p class="small" style="margin:16px 0 0">
+          Diese Dienstleistung wird von <strong>FKP - Fabian Kettler Projekte</strong> angeboten.
+        </p>
+
+        <!-- Optional: Kontaktangaben ergänzen, falls du sie veröffentlichen willst -->
+        <!--
+        <h2 style="margin:18px 0 10px">Kontakt</h2>
+        <p class="small" style="margin:0">
+          Telefon: <a href="tel:+49...">...</a><br>
+          E-Mail: <a href="mailto:...">...</a>
+        </p>
+        -->
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/img/logo.svg" alt="RadonSicher Logo" class="footer-logo" />
+          <div>
+            <strong>RadonSicher</strong><br />
+            <span class="small">Der Radon-Check für Ihr Zuhause.</span>
+          </div>
+        </div>
+
+        <div class="small">
+          <strong>Direkter Kontakt</strong><br />
+          Delsterner Str. 102, 58091 Hagen
+        </div>
+
+        <div class="small footer-links">
+          <a href="impressum.html">Impressum</a> •
+          <a href="datenschutz.html">Datenschutz</a> •
+          <a href="index.html#kontakt">Kontakt</a>
+        </div>
+      </div>
+
+      <p class="small footer-note">
+        Diese Dienstleistung wird von FKP - Fabian Kettler Projekte angeboten.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
