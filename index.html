@@ -45,7 +45,7 @@
     header{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
-      background: rgba(255,255,255,.78);
+      background: #fff;
       border-bottom:1px solid var(--border);
     }
     .nav{
@@ -57,8 +57,8 @@
       letter-spacing:.2px;
     }
     .logo-img{
-    width: 36px;
-    height: 36px;
+    width: 45px;
+    height: 45px;
     object-fit: contain;
     display: block;
     }
@@ -213,6 +213,19 @@
     .small{font-size:12px; color:var(--muted2); max-width:105ch; font-weight:740}
     .footer-contact a{text-decoration:none;}
 .footer-contact a:hover{text-decoration:underline;}
+    .footer-brand{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.footer-logo{
+  width:32px;
+  height:32px;
+  flex:0 0 auto;
+  margin-top:2px; /* kleine optische Ausrichtung */
+}
+  
 
     @media (max-width: 960px){
       .hero-grid{grid-template-columns:1fr}
@@ -583,12 +596,13 @@
 </main>
 
 <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <strong>RadonSicher</strong><br />
-        <span class="small">Der Radon-Check für Ihr Zuhause.</span>
-      </div>
+<div class="footer-brand">
+  <img src="logo.svg" alt="RadonSicher Logo" class="footer-logo" />
+  <div>
+    <strong>RadonSicher</strong><br />
+    <span class="small">Der Radon-Check für Ihr Zuhause.</span>
+  </div>
+</div>
 
       <!-- NEU: Kontakt im Footer -->
       <div class="small footer-contact">
@@ -604,10 +618,6 @@
         <a href="#kontakt">Kontakt</a>
       </div>
     </div>
-
-    <p class="small" style="margin-top:12px">
-      Diese Dienstleistung wird von FKP - Fabian Kettler Projekte angeboten.
-    </p>
   </div>
 </footer>
 
