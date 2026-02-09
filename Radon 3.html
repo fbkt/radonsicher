@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RadonSicher | Der Radon-Check für Ihr Zuhause.</title>
+  <meta name="description" content="RadonSicher – Der Radon-Check für Ihr Zuhause. 7-Tage-Orientierungscheck in Hagen & Umgebung. Kurzbericht per E-Mail inkl. Handlungsempfehlungen." />
+
+  <style>
+    :root{
+      /* Light, professional base */
+      --bg: #fbfbfd;
+      --bg2:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --muted2:#64748b;
+
+      /* Orange accent (professional, not “loud”) */
+      --accent:#f97316;    /* orange 500 */
+      --accent2:#fb923c;   /* orange 400 */
+      --accentSoft: rgba(249,115,22,.12);
+      --accentBorder: rgba(249,115,22,.28);
+
+      --card:#ffffff;
+      --border: rgba(15, 23, 42, .10);
+      --shadow: 0 12px 30px rgba(15,23,42,.10);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;padding:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% 0%, rgba(249,115,22,.10), transparent 55%),
+        radial-gradient(1200px 600px at 95% 10%, rgba(249,115,22,.08), transparent 50%),
+        linear-gradient(180deg, var(--bg), #fff7ed 85%, #fbfbfd);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .container{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,.78);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0; gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:900;
+      letter-spacing:.2px;
+    }
+    .logo{
+      width:36px; height:36px; border-radius:12px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(249,115,22,.95), rgba(249,115,22,.20) 48%, transparent 63%),
+        radial-gradient(circle at 70% 70%, rgba(249,115,22,.85), rgba(249,115,22,.16) 45%, transparent 62%);
+      border:1px solid var(--border);
+      box-shadow: 0 16px 30px rgba(249,115,22,.12);
+    }
+    nav ul{list-style:none;margin:0;padding:0;display:flex;gap:12px;flex-wrap:wrap}
+    nav a{
+      text-decoration:none; color:var(--muted); font-weight:850; font-size:14px;
+      padding:8px 10px; border-radius:12px; border:1px solid transparent;
+    }
+    nav a:hover{color:var(--text); border-color:var(--border); background:rgba(15,23,42,.03)}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px; border-radius:14px; font-weight:950;
+      text-decoration:none; border:1px solid var(--border);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 10px 22px rgba(15,23,42,.08);
+      transition:.18s transform, .18s box-shadow, .18s background, .18s border;
+      cursor:pointer;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(15,23,42,.12);
+      border-color: var(--accentBorder);
+    }
+    .btn.primary{
+      color:#111827;
+      border-color: rgba(249,115,22,.22);
+      background: linear-gradient(90deg, rgba(249,115,22,.95), rgba(251,146,60,.92));
+    }
+    .btn.primary:hover{border-color: rgba(249,115,22,.35)}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      background: rgba(255,255,255,.75);
+      font-size:12px; font-weight:950;
+    }
+
+    section{padding:46px 0}
+    .hero{padding:58px 0 34px}
+    .hero-grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:20px; align-items:stretch}
+    h1{
+      font-size: clamp(30px, 4.4vw, 54px);
+      line-height:1.06; margin:14px 0 12px;
+      letter-spacing:-.8px;
+    }
+    .lead{font-size:18px; color:var(--muted); max-width:66ch; margin:0}
+    .hero-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px}
+    .mini{font-size:13px; color:var(--muted2); margin-top:10px}
+
+    .card{
+      border:1px solid var(--border);
+      background: var(--card);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .soft{
+      background: linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.70));
+      box-shadow: 0 12px 32px rgba(15,23,42,.08);
+    }
+
+    .section-title{font-size:28px; margin:0 0 10px; letter-spacing:-.4px}
+    .section-sub{color:var(--muted); margin:0 0 18px; max-width:82ch; font-weight:750}
+
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .two-col{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+
+    .divider{height:1px; background:var(--border); margin:14px 0}
+
+    .checklist{margin:10px 0 0; padding:0; list-style:none; display:grid; gap:10px}
+    .checklist li{display:flex; gap:10px; align-items:flex-start; color:var(--muted); font-weight:850}
+    .check{
+      width:22px; height:22px; border-radius:8px; flex:0 0 22px;
+      background: var(--accentSoft);
+      border:1px solid var(--accentBorder);
+      display:grid; place-items:center; color: #9a3412;
+      margin-top:1px;
+      font-weight:1000;
+    }
+
+    .hero-media{display:flex; flex-direction:column; gap:12px}
+    .hero-img{
+      width:100%; height: 280px; border-radius: var(--radius);
+      border:1px solid var(--border);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      background: #e2e8f0;
+    }
+    .hero-img img{width:100%; height:100%; object-fit:cover; display:block}
+
+    /* Steps */
+    .steps{display:grid; gap:12px}
+    .step{display:flex; gap:14px; align-items:flex-start}
+    .num{
+      width:34px;height:34px;border-radius:12px;
+      border:1px solid var(--accentBorder);
+      background: var(--accentSoft);
+      display:grid; place-items:center;
+      font-weight:1000; color:#9a3412;
+      flex:0 0 34px;
+    }
+
+    /* Pricing */
+    .price{
+      position:relative; overflow:hidden;
+      border:1px solid var(--accentBorder);
+    }
+    .badge{
+      position:absolute; top:14px; right:14px;
+      font-size:12px; font-weight:1000; letter-spacing:.2px;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.75);
+      color:var(--muted);
+    }
+    .amount{font-size:40px; font-weight:1100; margin:10px 0 4px}
+    .amount small{font-size:14px; color:var(--muted); font-weight:950}
+
+    /* FAQ */
+    .faq details{
+      border:1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 12px 26px rgba(15,23,42,.06);
+      padding:14px 16px;
+    }
+    .faq details + details{margin-top:10px}
+    .faq summary{cursor:pointer; font-weight:1050; color:var(--text)}
+    .faq p{color:var(--muted); margin:10px 0 0; font-weight:780}
+
+    /* Tally embed wrapper */
+    .embed-wrap{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      overflow:hidden;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 12px 28px rgba(15,23,42,.08);
+    }
+    .embed-note{
+      font-size:12px; color:var(--muted2); font-weight:750;
+      margin-top:10px;
+    }
+
+    footer{
+      padding:26px 0 40px;
+      border-top:1px solid var(--border);
+      background: rgba(255,255,255,.70);
+    }
+    .footer-grid{display:flex; gap:14px; justify-content:space-between; flex-wrap:wrap}
+    .small{font-size:12px; color:var(--muted2); max-width:105ch; font-weight:740}
+
+    @media (max-width: 960px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+      .two-col{grid-template-columns:1fr}
+      nav ul{display:none}
+      .hero-img{height: 240px}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div style="font-size:14px;opacity:.95">RadonSicher</div>
+          <div style="font-size:12px;color:var(--muted);font-weight:950">Der Radon-Check für Ihr Zuhause.</div>
+        </div>
+      </div>
+
+      <nav aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="#warum">Radon</a></li>
+          <li><a href="#leistung">Leistung</a></li>
+          <li><a href="#ablauf">Ablauf</a></li>
+          <li><a href="#preis">Preis</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+        <a class="btn primary" href="#kontakt">Jetzt Radon-Check anfragen</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div>
+          <span class="pill">7-Tage-Messung • Kalibrierte Elektronik • Kurzbericht per E-Mail</span>
+          <h1>Radonbelastung zuhause einschätzen – schnell & nachvollziehbar.</h1>
+          <p class="lead">
+            Radon ist ein unsichtbares, radioaktives Gas aus dem Boden. Es kann in Gebäude eindringen und erhöht nachweislich das
+            <strong>Risiko für Lungenkrebs.</strong>
+            Mit unserem <strong>Radon-Check</strong> messen wir <strong>mindestens 7 Tage</strong> mit <strong>kalibrierten elektronischen Radon-Monitoren</strong>
+            und senden Ihnen anschließend einen <strong>Kurzbericht per E-Mail</strong> (inkl. Handlungsempfehlungen).
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#kontakt">Jetzt Radon-Check anfragen</a>
+            <a class="btn" href="#ablauf">Ablauf ansehen</a>
+          </div>
+
+          <ul class="checklist">
+            <li><span class="check">✓</span><span><strong>Mindestens 7 Tage vor Ort</strong> – damit Schwankungen sichtbar werden</span></li>
+            <li><span class="check">✓</span><span><strong>Elektronische Messung</strong> statt monatelang warten auf Dosimeter-Auswertung</span></li>
+            <li><span class="check">✓</span><span><strong>Ergebnis per E-Mail</strong> inkl. Empfehlung, ob weiterer Handlungsbedarf besteht</span></li>
+          </ul>
+
+          <p class="mini">
+            Radon schwankt (Tag/Nacht, Wetter, Lüftungsverhalten). Eine 7-Tage-Messung liefert trotzdem eine solide erste Orientierung,
+            ob und wo sich eine Vertiefung lohnt.
+          </p>
+        </div>
+
+        <div class="hero-media">
+          <div class="hero-img" aria-label="Innenraum, Messung">
+            <!-- Bild: Du kannst diese URL durch ein eigenes Unsplash- oder lokales Bild ersetzen -->
+            <img
+              src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=1400&q=70"
+              alt="Professionelle Messsituation in Innenräumen"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="card soft">
+            <h3 style="margin:0 0 6px">Warum elektronische Messgeräte?</h3>
+            <p style="margin:0;color:var(--muted);font-weight:820">
+              Passive Dosimeter liefern häufig erst nach Monaten ein Ergebnis. Wir nutzen <strong>kalibrierte elektronische Radon-Monitore</strong>,
+              die einen <strong>schnelleren Messverlauf</strong> sichtbar machen – ideal für eine erste, pragmatische Einschätzung.
+            </p>
+            <div class="divider"></div>
+            <p class="mini" style="margin:0">
+              Geräte: u. a. SARAD Radon Scout Home & RAMON 2.2 (elektronische Radon-Monitore).
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY RADON -->
+  <section id="warum">
+    <div class="container">
+      <h2 class="section-title">Warum Radon ernst nehmen?</h2>
+      <p class="section-sub">
+        Radon und seine Zerfallsprodukte geben ionisierende Strahlung ab, die in der Lunge Zellen schädigen kann.
+        Epidemiologische Studien zeigen: <strong>Radon erhöht das Lungenkrebsrisiko</strong> – und das Risiko steigt deutlich,
+        wenn zusätzlich geraucht wird.
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3 style="margin:0 0 6px">Nachgewiesenes Risiko</h3>
+          <p style="margin:0;color:var(--muted);font-weight:820">
+            Radon gilt als <strong>krebserregend</strong> (IARC). Wissenschaftliche Auswertungen und Behörden ordnen Radon als
+            wichtigen Risikofaktor für Lungenkrebs ein.
+          </p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 6px">Besonders relevant im Alltag</h3>
+          <p style="margin:0;color:var(--muted);font-weight:820">
+            Radon sammelt sich vor allem in <strong>Keller- und Erdgeschossbereichen</strong>. Ob es ein Thema ist,
+            hängt stark von Bauweise, Undichtigkeiten, Nutzung und Lüftung ab.
+          </p>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 6px">Synergie mit Rauchen</h3>
+          <p style="margin:0;color:var(--muted);font-weight:820">
+            Wer raucht, hat durch Radon ein deutlich höheres Risiko als Nichtraucher. Genau deshalb lohnt eine frühe
+            Orientierung in häufig genutzten Räumen.
+          </p>
+        </div>
+      </div>
+
+      <div class="card soft" style="margin-top:16px; border:1px solid var(--accentBorder)">
+        <strong>Unser Ansatz:</strong>
+        <span style="color:var(--muted);font-weight:820">
+          Eine <strong>7-Tage-Messung</strong> ist eine gute erste Orientierung: Sie zeigt typische Schwankungen und ob Werte auffällig wirken.
+          Bei Bedarf empfehlen wir im Bericht passende nächste Schritte.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE -->
+  <section id="leistung">
+    <div class="container">
+      <h2 class="section-title">Unsere Leistung: Radon-Check (7 Tage)</h2>
+      <p class="section-sub">
+        Ein Angebot, bewusst einfach: Wir stellen die Messgeräte auf, messen <strong>mindestens eine Woche</strong>, lesen die Daten aus
+        und schicken Ihnen einen <strong>Kurzbericht per E-Mail</strong> – inkl. Handlungsempfehlungen.
+      </p>
+
+      <div class="two-col">
+        <div class="card soft">
+          <h3 style="margin:0 0 6px">Was enthalten ist</h3>
+          <ul class="checklist">
+            <li><span class="check">✓</span><span>Vor-Ort-Setup in den relevanten Bereichen (typisch Keller/Erdgeschoss)</span></li>
+            <li><span class="check">✓</span><span><strong>Messdauer: mind. 7 Tage</strong> (Gerät bleibt vor Ort)</span></li>
+            <li><span class="check">✓</span><span>Datenauslese & Plausibilitätscheck</span></li>
+            <li><span class="check">✓</span><span><strong>Kurzbericht per E-Mail</strong> (Verlauf + Einordnung)</span></li>
+            <li><span class="check">✓</span><span>Ggf. <strong>Handlungsempfehlungen</strong> (z. B. Lüftung/Organisation/Vertiefung)</span></li>
+          </ul>
+
+          <div class="divider"></div>
+          <a class="btn primary" href="#kontakt">Jetzt Radon-Check anfragen</a>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 6px">Warum 7 Tage?</h3>
+          <p style="margin:0;color:var(--muted);font-weight:820">
+            Radon schwankt teils stark (Tag/Nacht, Wetter, Lüften). Eine Woche Messdauer ist lang genug,
+            um typische Muster sichtbar zu machen – und kurz genug, um schnell eine erste Entscheidung zu treffen.
+          </p>
+          <div class="divider"></div>
+          <h3 style="margin:0 0 6px">Elektronisch statt monatelang warten</h3>
+          <p style="margin:0;color:var(--muted);font-weight:820">
+            Wir nutzen keine Passivdosimeter, bei denen man oft erst nach mehreren Monaten Ergebnisse bekommt,
+            sondern kalibrierte elektronische Messgeräte, die zeitnah eine fundierte Orientierung ermöglichen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section id="ablauf">
+    <div class="container">
+      <h2 class="section-title">Ablauf in 3 Schritten</h2>
+      <p class="section-sub">Unkompliziert und strukturiert.</p>
+
+      <div class="steps">
+        <div class="card step">
+          <div class="num">1</div>
+          <div>
+            <h3 style="margin:0 0 6px">Anfrage & Termin</h3>
+            <p style="margin:0;color:var(--muted);font-weight:820">
+              Sie senden uns die Eckdaten (Adresse, Raumtyp, Nutzung). Wir vereinbaren den Termin für das Setup.
+            </p>
+          </div>
+        </div>
+
+        <div class="card step">
+          <div class="num">2</div>
+          <div>
+            <h3 style="margin:0 0 6px">Setup & 7-Tage-Messung</h3>
+            <p style="margin:0;color:var(--muted);font-weight:820">
+              Wir platzieren das Gerät praxisgerecht. Es bleibt <strong>mindestens 7 Tage</strong> vor Ort und erfasst den Messverlauf.
+            </p>
+          </div>
+        </div>
+
+        <div class="card step">
+          <div class="num">3</div>
+          <div>
+            <h3 style="margin:0 0 6px">Datenauslese & Kurzbericht per E-Mail</h3>
+            <p style="margin:0;color:var(--muted);font-weight:820">
+              Wir lesen die Daten aus und senden Ihnen einen Kurzbericht mit Ergebnissen, Einordnung und ggf. Handlungsempfehlungen.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px">
+        <a class="btn primary" href="#kontakt">Jetzt Radon-Check anfragen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICE -->
+  <section id="preis">
+    <div class="container">
+      <h2 class="section-title">Preis</h2>
+
+      <div class="card price soft">
+        <div class="badge">Festpreis</div>
+        <h3 style="margin:0 0 6px">Radon-Check (7 Tage)</h3>
+        <div class="amount">85 € <small>pro Haushalt / Messung</small></div>
+        <p style="margin:0;color:var(--muted);font-weight:820">
+          Enthalten: Vor-Ort-Setup, mind. 7 Tage Messdauer, Datenauslese und Kurzbericht per E-Mail inkl. ggf. Handlungsempfehlungen.
+          Falls sich im Verlauf zeigt, dass weitere Räume sinnvoll sind, klären wir das unkompliziert individuell.
+        </p>
+        <div class="divider"></div>
+        <a class="btn primary" href="#kontakt">Jetzt Radon-Check anfragen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <h2 class="section-title">FAQ</h2>
+      <p class="section-sub">Kurz beantwortet.</p>
+
+      <div class="faq">
+        <details>
+          <summary>Wie lange dauert die Messung?</summary>
+          <p>Mindestens 7 Tage. So werden typische Schwankungen (Tag/Nacht, Wetter, Lüftung) sichtbar und es entsteht eine gute erste Orientierung.</p>
+        </details>
+
+        <details>
+          <summary>Warum keine Passivdosimeter?</summary>
+          <p>Passive Dosimeter liefern häufig erst nach mehreren Monaten ein Ergebnis. Wir setzen kalibrierte elektronische Messgeräte ein, um schneller einen belastbaren Messverlauf für eine erste Einordnung zu erhalten.</p>
+        </details>
+
+        <details>
+          <summary>Was steht im Kurzbericht?</summary>
+          <p>Messzeitraum, Messverlauf/Trend, eine verständliche Einordnung sowie – falls sinnvoll – konkrete Handlungsempfehlungen (z. B. Vorgehen zur Vertiefung oder pragmatische Maßnahmen).</p>
+        </details>
+
+        <details>
+          <summary>Wie bezahlen wir?</summary>
+          <p>Sie zahlen erst nach erfolgter Leistung ohne zusätzliche Kosten per Rechnung – z. B. per Überweisung, PayPal oder bar.</p>
+        </details>
+
+        <details>
+          <summary>Ist das eine formale/amtliche Bewertung?</summary>
+          <p>Der Radon-Check ist als Orientierungscheck konzipiert. Für eine formale Langzeitbewertung werden typischerweise längere Messzeiträume eingesetzt.</p>
+        </details>
+
+        <details>
+          <summary>Wo sind Sie unterwegs?</summary>
+          <p>Hagen und Umgebung. Alles Weitere klären wir unkompliziert bei der Anfrage.</p>
+        </details>
+      </div>
+
+      <div style="margin-top:14px">
+        <a class="btn primary" href="#kontakt">Jetzt Radon-Check anfragen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="kontakt">
+    <div class="container">
+      <h2 class="section-title">Kontakt</h2>
+      <p class="section-sub">
+        Anfrage stellen und Termin abstimmen. Alternativ erreichen Sie uns direkt telefonisch oder per E-Mail.
+      </p>
+
+   <div class="card soft">
+  <h3 style="margin:0 0 10px">Anfrage (Tally)</h3>
+
+  <div class="embed-wrap">
+    <!-- dein Tally iframe/embed bleibt hier drin -->
+    <iframe
+      data-tally-src="https://tally.so/embed/Y5W4Bv?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+      loading="lazy"
+      width="100%"
+      height="979"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0"
+      title="Anfrageformular">
+    </iframe>
+  </div>
+
+  <div class="divider"></div>
+  <a class="btn primary" href="#kontakt">Jetzt Radon-Check anfragen</a>
+</div>
+
+<div class="card" style="margin-top:16px">
+  <h3 style="margin:0 0 8px">Direkter Kontakt</h3>
+  <p style="margin:0;color:var(--muted);font-weight:820">
+    <strong>RadonSicher</strong><br/>
+    Delsterner Str. 102, 58091 Hagen<br/>
+    Telefon: <strong>01783848212</strong><br/>
+    E-Mail: <strong>anfrage@radonsicher.de</strong>
+  </p>
+
+ 
+</div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <strong>RadonSicher</strong><br />
+        <span class="small">Der Radon-Check für Ihr Zuhause.</span>
+      </div>
+      <div class="small">
+        <a href="[LINK_IMPRESSUM]">Impressum</a> •
+        <a href="[LINK_DATENSCHUTZ]">Datenschutz</a> •
+        <a href="#kontakt">Kontakt</a>
+      </div>
+    </div>
+
+    <p class="small" style="margin-top:12px">
+      Diese Dienstleistung wird von FKP - Fabian Kettler Projekte angeboten.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
+<script>
+var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+</script>
