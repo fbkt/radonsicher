@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RadonSicher | Karten & weiterführende Infos</title>
+  <meta name="description" content="Offizielle Karten und Infoseiten zu Radon: BfS-Bodenkarte, Zentrale Radonstelle NRW und lokaler Radon-Flyer der Stadt Hagen." />
+
+  <!--
+    Hinweis:
+    - Diese Seite ist als "satellite"-Seite zur RadonSicher-Hauptseite gedacht.
+    - Lege sie im gleichen Ordner wie RadonSicher.html ab.
+    - Dann funktionieren die relativen Links (zurück zur Hauptseite, Assets etc.) direkt.
+  -->
+
+  <style>
+    :root{
+      --bg: #fbfbfd;
+      --bg2:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --muted2:#64748b;
+
+      --accent:#f97316;
+      --accent2:#fb923c;
+      --accentSoft: rgba(249,115,22,.12);
+      --accentBorder: rgba(249,115,22,.28);
+
+      --card:#ffffff;
+      --border: rgba(15, 23, 42, .10);
+      --shadow: 0 12px 30px rgba(15,23,42,.10);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;padding:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% 0%, rgba(249,115,22,.10), transparent 55%),
+        radial-gradient(1200px 600px at 95% 10%, rgba(249,115,22,.08), transparent 50%),
+        linear-gradient(180deg, var(--bg), #fff7ed 85%, #fbfbfd);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .container{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,.78);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0; gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:900;
+      letter-spacing:.2px;
+      text-decoration:none;
+    }
+    .logo-img{width:36px;height:36px;object-fit:contain;display:block}
+
+    nav ul{list-style:none;margin:0;padding:0;display:flex;gap:12px;flex-wrap:wrap}
+    nav a{
+      text-decoration:none; color:var(--muted); font-weight:850; font-size:14px;
+      padding:8px 10px; border-radius:12px; border:1px solid transparent;
+    }
+    nav a:hover{color:var(--text); border-color:var(--border); background:rgba(15,23,42,.03)}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px; border-radius:14px; font-weight:950;
+      text-decoration:none; border:1px solid var(--border);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 10px 22px rgba(15,23,42,.08);
+      transition:.18s transform, .18s box-shadow, .18s background, .18s border;
+      cursor:pointer;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(15,23,42,.12);
+      border-color: var(--accentBorder);
+    }
+    .btn.primary{
+      color:#111827;
+      border-color: rgba(249,115,22,.22);
+      background: linear-gradient(90deg, rgba(249,115,22,.95), rgba(251,146,60,.92));
+    }
+
+    main{padding:34px 0 0}
+    section{padding:24px 0}
+    h1{font-size: clamp(28px, 4.0vw, 44px); line-height:1.10; margin:10px 0 10px; letter-spacing:-.6px}
+    .lead{font-size:18px; color:var(--muted); margin:0; max-width:82ch}
+
+    .card{
+      border:1px solid var(--border);
+      background: var(--card);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .soft{
+      background: linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.70));
+      box-shadow: 0 12px 32px rgba(15,23,42,.08);
+    }
+    .divider{height:1px; background:var(--border); margin:14px 0}
+
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+
+    .section-title{font-size:26px; margin:0 0 10px; letter-spacing:-.4px}
+    .section-sub{color:var(--muted); margin:0 0 18px; max-width:92ch; font-weight:750}
+
+    .mini{font-size:13px; color:var(--muted2); margin-top:10px}
+
+    footer{
+      padding:26px 0 40px;
+      border-top:1px solid var(--border);
+      background: rgba(255,255,255,.70);
+      margin-top:26px;
+    }
+    .footer-grid{display:flex; gap:14px; justify-content:space-between; flex-wrap:wrap}
+    .small{font-size:12px; color:var(--muted2); max-width:105ch; font-weight:740}
+
+    @media (max-width: 960px){
+      .grid-3{grid-template-columns:1fr}
+      nav ul{display:none}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="RadonSicher.html" aria-label="Zurück zur Hauptseite">
+        <img class="logo-img" src="assets/img/logo.svg" alt="RadonSicher Logo" />
+        <div>
+          <div style="font-size:14px;opacity:.95">RadonSicher</div>
+          <div style="font-size:12px;color:var(--muted);font-weight:950">Karten & weiterführende Infos</div>
+        </div>
+      </a>
+
+      <nav aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="#karten">Karten & Links</a></li>
+          <li><a href="#hinweise">Hinweise</a></li>
+        </ul>
+      </nav>
+
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+        <a class="btn" href="RadonSicher.html">← Zur Hauptseite</a>
+        <a class="btn primary" href="RadonSicher.html#kontakt">Radon-Check anfragen</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="container">
+      <h1>Offizielle Karten & Informationsquellen</h1>
+      <p class="lead">
+        Hier findest du ausgewählte, seriöse Quellen zur <strong>ersten regionalen Einordnung</strong> und als <strong>Hintergrundwissen</strong>.
+        Für die konkrete Situation im eigenen Gebäude gilt: <strong>Eine Messung ist durch nichts zu ersetzen.</strong>
+      </p>
+    </div>
+  </section>
+
+  <section id="karten">
+    <div class="container">
+      <h2 class="section-title">Karten & Links</h2>
+      <p class="section-sub">
+        Die Karten zeigen Tendenzen auf regionaler Ebene. Sie helfen bei der Einschätzung, ob Radon grundsätzlich ein Thema sein kann –
+        ersetzen aber keine Messung im Haus.
+      </p>
+
+      <div class="grid-3">
+        <div class="card soft">
+          <h3 style="margin:0 0 6px">Stadt Hagen: Radon-Flyer (PDF)</h3>
+          <p style="margin:0;color:var(--muted);font-weight:820">
+            Lokaler Ratgeber „Radon in Gebäuden“ mit Grundlagen, typischen Eintrittswegen und Maßnahmen –
+            inkl. Bezug zur Situation im Stadtgebiet Hagen.
+          </p>
+          <div class="divider"></div>
+          <a class="btn" href="https://www.hagen.de/dateien/aus-dem-rathaus/fachbereiche-und-aemter/f-a-z/umweltamt-2/laerm-und-luft/flyer-radon-internet.pdf" target="_blank" rel="noopener">
+            PDF öffnen
+          </a>
+          <p class="mini">Öffnet in neuem Tab.</p>
+        </div>
+
+        <div class="card soft">
+          <h3 style="margin:0 0 6px">BfS: Radon im Boden (Deutschlandkarte)</h3>
+          <p style="margin:0;color:var(--muted);font-weight:820">
+            Offizielle Deutschlandkarte zur Radon-Konzentration im Boden als erste Orientierung.
+            Hinweis: keine Aussage für einzelne Grundstücke/Gebäude.
+          </p>
+          <div class="divider"></div>
+          <a class="btn" href="https://www.bfs.de/DE/themen/ion/umwelt/radon/karten/boden.html" target="_blank" rel="noopener">
+            Karte ansehen
+          </a>
+          <p class="mini">Öffnet in neuem Tab.</p>
+        </div>
+
+        <div class="card soft">
+          <h3 style="margin:0 0 6px">Zentrale Radonstelle NRW</h3>
+          <p style="margin:0;color:var(--muted);font-weight:820">
+            Überblick zu Radonvorkommen in NRW, Einordnung und Verweise auf Karten/Infos –
+            inkl. Hinweisen zur Interpretation.
+          </p>
+          <div class="divider"></div>
+          <a class="btn" href="https://www.radon.nrw.de/radon-vorkommen-nrw" target="_blank" rel="noopener">
+            NRW-Infos öffnen
+          </a>
+          <p class="mini">Öffnet in neuem Tab.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hinweise">
+    <div class="container">
+      <h2 class="section-title">Wichtige Hinweise zur Einordnung</h2>
+
+      <div class="card" style="border:1px solid var(--accentBorder)">
+        <strong>Karten sind keine Gebäude-Messung.</strong>
+        <div class="divider"></div>
+        <p style="margin:0;color:var(--muted);font-weight:820;max-width:95ch">
+          Radonwerte können von Haus zu Haus stark schwanken (Bauweise, Undichtigkeiten, Nutzung, Lüften, Abdichtung, Untergrund).
+          Karten zeigen regionale Tendenzen – ob Radon im eigenen Gebäude tatsächlich relevant ist, lässt sich nur durch eine Messung klären.
+        </p>
+        <p class="mini" style="margin:10px 0 0">
+          Tipp: Wenn du bereits eine erste Kurzzeitmessung hast, hilft sie dabei, Räume zu priorisieren (Keller/Erdgeschoss, häufig genutzte Räume).
+        </p>
+
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn primary" href="RadonSicher.html#kontakt">Radon-Check anfragen</a>
+          <a class="btn" href="RadonSicher.html">Zurück zur Hauptseite</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div style="font-weight:1000">RadonSicher</div>
+        <div class="small">Karten & weiterführende Infos</div>
+      </div>
+      <div class="small">
+        <a href="RadonSicher.html">Hauptseite</a>
+        <span style="opacity:.5"> • </span>
+        <a href="RadonSicher.html#kontakt">Kontakt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
